@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>EVCharge | Station Details</title>
+</head>
+
+<body>
+    <div class="detail-page-wrapper">
+        <a href="index.html#charging-section" class="back-link">← Back to Stations</a>
+        <div class="main-detail-card">
+            <h1 id="st-name">Station Name</h1>
+            <p class="sub-text">Premium Charging Location</p>
+<div class="tariff-card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 class="tariff-label">Estimated Tariff</h4>
+        <span id="st-status-badge" class="badge">Checking...</span>
+    </div>
+    
+    <div class="price-display">
+        <span id="st-price">0</span> 
+        <span class="unit">/ kWh</span>
+    </div>
+
+    <div class="specs-grid">
+        <div class="spec-item">
+            <p class="label">Connector Type</p>
+            <p id="st-type" class="value">Loading...</p>
+        </div>
+        <div class="spec-item">
+            <p class="label">Max Output</p>
+            <p id="st-speed" class="value">0 kW</p>
+        </div>
+        <div class="spec-item">
+            <p class="label">Parking Fee</p>
+            <p id="st-parking" class="value">₹0/hr</p>
+        </div>
+    </div>
+
+    <div class="fee-notice">
+        <strong>⚠️ Idle Fee Notice:</strong> 
+        ₹<span id="st-idle">0</span>/min will be charged if the vehicle remains plugged in 15 mins after charging is complete.
+    </div>
+
+    <button id="reserve-btn" class="charge-up-btn" style="width: 100%; margin-top: 20px; background: #1a1a1a; color: white;">
+        Reserve Charger
+    </button>
+</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
