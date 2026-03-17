@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="charger.css">
+    <title>EVCharge | Find a Station</title>
+        <link rel="icon" type="image" href="logo.png">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+
+
+
+    <header id="main-header" class="main-header">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <svg width="73" height="33" viewBox="0 0 73 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4.00089 30.7422C0.270269 29.4251 -0.675942 23.3082 0.570968 19.0182L23.4679 18.7828L23.5213 19.0182C23.5213 19.0182 23.5822 21.5222 24.3672 22.7498C26.3685 24.9568 32.7782 24.0332 32.7782 24.0332V21.8164H37.645C37.645 21.8164 38.3883 21.4278 38.4914 20.9413C38.627 20.3014 37.645 19.5412 37.645 19.5412H32.7782V15.0491H37.645C37.645 15.0491 38.4023 14.58 38.4914 14.0573C38.6047 13.3927 37.645 12.5989 37.645 12.5989H32.7782V10.207C32.7782 10.207 28.1001 8.89755 25.531 10.207C24.8519 10.5531 26.0156 9.7947 24.8519 10.5531C23.2927 11.5691 23.4679 15.9825 23.4679 15.9825H1.94636C4.04998 13.728 7.1097 15.0116 9.66114 13.4156C13.4366 11.0539 13.6961 7.19223 17.2787 4.48976C26.7251 -2.63597 35.9173 -0.0819516 46.585 4.48976C52.1307 6.86641 54.0859 10.6767 59.4925 13.4156C63.411 15.4007 67.3102 13.6501 69.9137 17.441C72.7576 21.5818 74.1632 28.5018 69.9137 30.7422C67.8822 31.8133 64.1477 30.7422 64.1477 30.7422C64.1477 30.7422 62.6715 23.786 59.4925 21.8164C56.4487 19.9305 53.5198 19.7877 50.5525 21.8164C47.5607 23.8618 46.585 30.7422 46.585 30.7422H24.3672C24.3672 30.7422 23.5274 24.679 20.9287 22.7498C18.0839 20.6379 15.0226 20.6885 12.1474 22.7498C9.49054 24.6545 8.49735 30.7422 8.49735 30.7422C8.49735 30.7422 5.67326 31.3327 4.00089 30.7422Z"
+                        fill="#52F2E5" />
+                    <path
+                        d="M0.570968 19.0182C-0.675942 23.3082 0.270269 29.4251 4.00089 30.7422C5.67326 31.3327 8.49735 30.7422 8.49735 30.7422C8.49735 30.7422 9.49054 24.6545 12.1474 22.7498C15.0226 20.6885 18.0839 20.6379 20.9287 22.7498C23.5274 24.679 24.3672 30.7422 24.3672 30.7422H46.585C46.585 30.7422 47.5607 23.8618 50.5525 21.8164C53.5198 19.7877 56.4487 19.9305 59.4925 21.8164C62.6715 23.786 64.1477 30.7422 64.1477 30.7422C64.1477 30.7422 67.8822 31.8133 69.9137 30.7422C74.1632 28.5018 72.7576 21.5818 69.9137 17.441C67.3102 13.6501 63.411 15.4007 59.4925 13.4156C54.0859 10.6767 52.1307 6.86641 46.585 4.48976C35.9173 -0.0819516 26.7251 -2.63597 17.2787 4.48976C13.6961 7.19223 13.4366 11.0539 9.66114 13.4156C7.1097 15.0116 4.04998 13.728 1.94636 15.9825H23.4679C23.4679 15.9825 23.2927 11.5692 24.8519 10.5531C26.0157 9.7947 24.8519 10.5531 25.531 10.207C28.1001 8.89755 32.7782 10.207 32.7782 10.207V12.5989H37.645C37.645 12.5989 38.6047 13.3927 38.4914 14.0573C38.4023 14.58 37.645 15.0491 37.645 15.0491H32.7782V19.5412H37.645C37.645 19.5412 38.627 20.3014 38.4914 20.9413C38.3883 21.4278 37.645 21.8164 37.645 21.8164H32.7782V24.0332C32.7782 24.0332 26.3685 24.9568 24.3672 22.7498M0.570968 19.0182L23.4679 18.7828L23.5213 19.0182M0.570968 19.0182H23.5213M24.3672 22.7498C23.2034 21.4663 24.7377 23.3291 24.3672 22.7498ZM24.3672 22.7498C23.5822 21.5222 23.5213 19.0182 23.5213 19.0182"
+                        stroke="#52F2E5" stroke-width="0.104235" />
+                    <ellipse cx="16.3127" cy="28.0391" rx="3.64821" ry="4.01303" fill="#52F2E5" />
+                    <ellipse cx="54.9837" cy="27.3095" rx="3.75244" ry="4.11726" fill="#52F2E5" />
+                    <ellipse cx="16.2085" cy="27.9349" rx="1.87622" ry="2.24104" fill="#FFFDFD" />
+                    <ellipse cx="54.9316" cy="27.2573" rx="1.92834" ry="2.18893" fill="white" />
+                </svg>
+
+                <span class="logo-brand">ev</span>
+
+
+                <span class="logo-text">charge</span>
+            </a>
+        </div>
+
+
+
+        <div class="nav-links">
+
+
+            <img src="https://www.tatapower.com/etc.clientlibs/tatapoweraemsitesprogram/clientlibs/clientlib-site/resources/images/header-search.svg"
+                onclick="toggleSearch()" class="nav-icon">
+
+
+
+
+            <img src="https://www.tatapower.com/etc.clientlibs/tatapoweraemsitesprogram/clientlibs/clientlib-site/resources/images/hamburger.svg"
+                onclick="toggleMenu()" class="nav-icon">
+
+
+            <a href="#charging-section" class="btn-cta">Find a Station</a>
+
+
+
+
+        </div>
+
+
+
+        </div>
+
+    </header>
+
+
+
+    <div id="menu-overlay" class="menu-overlay">
+        <div class="menu-container">
+            <div class="menu-header">
+                <span class="menu-title">EVCharge</span>
+                <span class="close-menu" onclick="toggleMenu()">✕</span>
+            </div>
+
+            <div class="menu-body">
+                <nav class="menu-main-nav">
+                    <a href="index.html" onclick="toggleMenu()"><span>01</span> Home</a>
+                    <a href="#charging-section" onclick="toggleMenu()"><span>02</span> Find Stations</a>
+                    <a href="#charger-solutions" onclick="toggleMenu()"><span>03</span> Connector Types</a>
+                    <a href="#pricing" onclick="toggleMenu()"><span>04</span> Pricing</a>
+                    <a href="#about" onclick="toggleMenu()"><span>05</span> About Us</a>
+                </nav>
+
+
+
+
+                <div class="menu-models-grid">
+                    <span class="sub-title">COMPATIBLE VEHICLES</span>
+                    <div class="models-container">
+                        <div class="model-item">
+                            <img src="https://s7ap1.scene7.com/is/image/tatapassenger/nexon-ev-empowered-oxide?$HC-264-129-D$&fit=fit&fmt=webp-alpha" alt="SUV">
+                            <p>Compact SUVs</p>
+                            <a href="#">View Charging Speeds →</a>
+                        </div>
+                        <div class="model-item">
+                            <img src="https://s7ap1.scene7.com/is/image/tatapassenger/curv-ev-emp-vs?$HC-264-129-D$&fit=fit&fmt=webp-alpha"
+                                alt="Sedan">
+                            <p>Premium Sedans</p>
+                            <a href="#">View Charging Speeds →</a>
+                        </div>
+                        <div class="model-item">
+                            <img src="https://s7ap1.scene7.com/is/image/tatapassenger/punch-ev-fearlessyellow?$HC-264-129-D$&fit=fit&fmt=webp-alpha"
+                                alt="Hatchback">
+                            <p>City Hatchbacks</p>
+                            <a href="#">View Charging Speeds →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-side-panel">
+                    <div class="menu-sub-section">
+                        <span class="sub-title">GUIDE</span>
+                        <ul>
+                            <a href = "#find"><li>Find nearest station</li></a>
+                            <li>Check real-time availability</li>
+                            <li>Scan & Charge via App</li>
+                            <li>Secure Digital Payment</li>
+                        </ul>
+                    </div>
+                    <div class="menu-contact">
+                        <span class="sub-title">CONTACT</span>
+                        <p>support@evcharge.in</p>
+                        <p>1800-200-EVCH</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <input type="text" placeholder="Search for news, article, stocks" id="search-box">
+                <span class="close-search" onclick="toggleSearch()">✕</span>
+            </div>
+
+            <div class="quick-search-section">
+                <span class="quick-title">Quick Search</span>
+                <div class="pill-container">
+                    <button class="search-pill">CCS2 Chargers</button>
+                    <button class="search-pill">Ultra Fast 250kW</button>
+                    <button class="search-pill">Available Now</button>
+                    <button class="search-pill">Charging Tariff</button>
+                    <button class="search-pill">Idle Fees</button>
+                    <button class="search-pill">Mumbai Highway</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>say hello to mega charging - ev.charge<br>network
+            </h1>
+            <p>First of its kind ev.charge, now live</p>
+            <a href="#find" class="charge-up-btn">
+                Find Your Charger
+            </a>
+        </div>
+    </section>
+
+
+<header class="promo-header">
+        <h1>Introducing EV Charge Mega Chargers</h1>
+        <p>Handpicked locations offering highest reliability and convenient amenities, ultra-fast 120kW charging speeds and up to 25% discount for EV Charge customers make EV Charge Mega Chargers the most sought-after charging destinations in the country. Use iRA.ev app or enroll across our partner apps – EV charge, Zeon, Statiq, ChargeZone and Shell to find your nearest EV Charge Mega Charger.</p>
+    </header>
+
+    <section class="features-container">
+        <h2>Why choose EV Charge Mega Chargers</h2>
+        
+       <div class="features-grid">
+    <div class="feature-item">
+        <div class="icon-wrapper">
+            <img src="https://s7ap1.scene7.com/is/image/tatapassenger/icon-mega-speed?$TI-44-42-D$&fit=crop&fmt=webp" alt="Speed">
+        </div>
+        <h3>Mega Speed</h3>
+        <p>Ultra Fast 120 Kw Charger.</p>
+    </div>
+    
+    <div class="feature-item">
+        <div class="icon-wrapper">
+            <img src="https://s7ap1.scene7.com/is/image/tatapassenger/icon-mega-convenient?$TI-44-42-D$&fit=crop&fmt=webp" alt="Convenient">
+        </div>
+        <h3>Mega Convenient</h3>
+        <p>Strategic location for stress free and comfortable travel.</p>
+    </div>
+
+    <div class="feature-item">
+        <div class="icon-wrapper">
+            <img src="https://s7ap1.scene7.com/is/image/tatapassenger/icon-mega-ease-svg?$TI-44-42-D$&fit=crop&fmt=webp" alt="Ease">
+        </div>
+        <h3>Mega Ease</h3>
+        <p>24 x 7 Remote and on-ground support.</p>
+    </div>
+
+    <div class="feature-item">
+        <div class="icon-wrapper">
+            <img src="https://s7ap1.scene7.com/is/image/tatapassenger/icon-mega-reliable?$TI-44-42-D$&fit=crop&fmt=webp" alt="Reliable">
+        </div>
+        <h3>Mega Reliable</h3>
+        <p>Maximum uptime for improved travel efficiency and peace of mind.</p>
+    </div>
+</div>
+    </section>
+<section class = "find" id = "find">
+<div class="container">
+  <div class="header">
+    <h2 class="title">Find your nearest mega charger</h2>
+   
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/shreenath-food-hub?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/Taat5MnAgnsF94NE8" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/mega-charger-akash-misal-house?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://goo.gl/maps/xHufGynqgYYmKQsU9?g_st=aw" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/hotel-express-inn-highway-king?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/spU5nBV5Gbo3FRiFA" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/times-sqare?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/W2Aecw5BcKjy8UFE8" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+  </div>
+
+   <div class="grid">
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/car-mall-nashik?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/8zitEzVShqE1QFwM9" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/voltran-nellore?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/vP4SH462LD5Yh3e58" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/leela-mumbai?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/DfHhXp5P2xtusGbD9" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/onyx?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/9mTeDj5aJHv1NTJd9" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+  </div>
+
+
+   <div class="grid">
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/mega-charger-asli-pappu?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/mf7VtFfkCyAMdUzW8" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/mega-charger-old-rao?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/KDn3hjsWQV1psP578" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/mega-charger-highway-king-shahapura?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/LxH2z2yp9MHcMyPQ7" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+    <div class="card">
+      <img src="https://s7ap1.scene7.com/is/image/tatapassenger/mega-charger-ss-plaza?$R-292-164-D$&fit=crop&fmt=webp" alt="Charger">
+      <a href="https://maps.app.goo.gl/wFo7RQLsnS7JJvDq8?g_st=" target = "_blankc " class="link">Get direction <span>→</span></a>
+    </div>
+  </div>
+</div>
+</section>
+
+    
+
+    <script src="script.js"></script>
+</body>
+
+
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-top-row">
+            <div class="footer-logo">
+                <a href="index.html" class="logo-link">
+                    <svg width="73" height="33" viewBox="0 0 73 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4.00089 30.7422C0.270269 29.4251 -0.675942 23.3082 0.570968 19.0182L23.4679 18.7828L23.5213 19.0182C23.5213 19.0182 23.5822 21.5222 24.3672 22.7498C26.3685 24.9568 32.7782 24.0332 32.7782 24.0332V21.8164H37.645C37.645 21.8164 38.3883 21.4278 38.4914 20.9413C38.627 20.3014 37.645 19.5412 37.645 19.5412H32.7782V15.0491H37.645C37.645 15.0491 38.4023 14.58 38.4914 14.0573C38.6047 13.3927 37.645 12.5989 37.645 12.5989H32.7782V10.207C32.7782 10.207 28.1001 8.89755 25.531 10.207C24.8519 10.5531 26.0156 9.7947 24.8519 10.5531C23.2927 11.5691 23.4679 15.9825 23.4679 15.9825H1.94636C4.04998 13.728 7.1097 15.0116 9.66114 13.4156C13.4366 11.0539 13.6961 7.19223 17.2787 4.48976C26.7251 -2.63597 35.9173 -0.0819516 46.585 4.48976C52.1307 6.86641 54.0859 10.6767 59.4925 13.4156C63.411 15.4007 67.3102 13.6501 69.9137 17.441C72.7576 21.5818 74.1632 28.5018 69.9137 30.7422C67.8822 31.8133 64.1477 30.7422 64.1477 30.7422C64.1477 30.7422 62.6715 23.786 59.4925 21.8164C56.4487 19.9305 53.5198 19.7877 50.5525 21.8164C47.5607 23.8618 46.585 30.7422 46.585 30.7422H24.3672C24.3672 30.7422 23.5274 24.679 20.9287 22.7498C18.0839 20.6379 15.0226 20.6885 12.1474 22.7498C9.49054 24.6545 8.49735 30.7422 8.49735 30.7422C8.49735 30.7422 5.67326 31.3327 4.00089 30.7422Z"
+                            fill="#52F2E5" />
+                        <path
+                            d="M0.570968 19.0182C-0.675942 23.3082 0.270269 29.4251 4.00089 30.7422C5.67326 31.3327 8.49735 30.7422 8.49735 30.7422C8.49735 30.7422 9.49054 24.6545 12.1474 22.7498C15.0226 20.6885 18.0839 20.6379 20.9287 22.7498C23.5274 24.679 24.3672 30.7422 24.3672 30.7422H46.585C46.585 30.7422 47.5607 23.8618 50.5525 21.8164C53.5198 19.7877 56.4487 19.9305 59.4925 21.8164C62.6715 23.786 64.1477 30.7422 64.1477 30.7422C64.1477 30.7422 67.8822 31.8133 69.9137 30.7422C74.1632 28.5018 72.7576 21.5818 69.9137 17.441C67.3102 13.6501 63.411 15.4007 59.4925 13.4156C54.0859 10.6767 52.1307 6.86641 46.585 4.48976C35.9173 -0.0819516 26.7251 -2.63597 17.2787 4.48976C13.6961 7.19223 13.4366 11.0539 9.66114 13.4156C7.1097 15.0116 4.04998 13.728 1.94636 15.9825H23.4679C23.4679 15.9825 23.2927 11.5692 24.8519 10.5531C26.0157 9.7947 24.8519 10.5531 25.531 10.207C28.1001 8.89755 32.7782 10.207 32.7782 10.207V12.5989H37.645C37.645 12.5989 38.6047 13.3927 38.4914 14.0573C38.4023 14.58 37.645 15.0491 37.645 15.0491H32.7782V19.5412H37.645C37.645 19.5412 38.627 20.3014 38.4914 20.9413C38.3883 21.4278 37.645 21.8164 37.645 21.8164H32.7782V24.0332C32.7782 24.0332 26.3685 24.9568 24.3672 22.7498M0.570968 19.0182L23.4679 18.7828L23.5213 19.0182M0.570968 19.0182H23.5213M24.3672 22.7498C23.2034 21.4663 24.7377 23.3291 24.3672 22.7498ZM24.3672 22.7498C23.5822 21.5222 23.5213 19.0182 23.5213 19.0182"
+                            stroke="#52F2E5" stroke-width="0.104235" />
+                        <ellipse cx="16.3127" cy="28.0391" rx="3.64821" ry="4.01303" fill="#52F2E5" />
+                        <ellipse cx="54.9837" cy="27.3095" rx="3.75244" ry="4.11726" fill="#52F2E5" />
+                        <ellipse cx="16.2085" cy="27.9349" rx="1.87622" ry="2.24104" fill="#FFFDFD" />
+                        <ellipse cx="54.9316" cy="27.2573" rx="1.92834" ry="2.18893" fill="white" />
+                    </svg>
+
+                    <span class="logo-brand">ev</span>
+
+
+                    <span class="footer-logo-text">charge</span>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="footer-content-grid">
+            <div class="footer-col">
+                <h4>EXPLORE</h4>
+                <ul>
+                    <li><a href="missions.html">Our Mission</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><a href="about2.html">About Us</a></li>
+                    <li><a href="suppliers.html">Suppliers</a></li>
+                    <li><a href="career.html">Career</a></li>
+                    <li><a href="launch.html">Launch</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="contact.html">Contact us</a></li>
+                    <li><a href="newsroom.html">Newsroom</a></li>
+
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>SOCIAL</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/mananjain_02?igsh=MWFtY281cHpwazY0Mw==">Instagram</a>
+                    </li>
+                    <li><a href="#">Twitter</a></li>
+
+                </ul>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</footer>
+
+</html>
