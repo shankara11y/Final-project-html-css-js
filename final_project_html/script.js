@@ -1,9 +1,17 @@
-// Sample Station Data
-const stations = [
-    { id: 1, name: "City Center Hub", type: "CCS", speed: 50, price: 15, idleFee: 5, available: true },
-    { id: 2, name: "Highway Fast Charge", type: "Tesla", speed: 250, price: 22, idleFee: 10, available: false },
-    { id: 3, name: "Mall Parking B2", type: "CCS", speed: 22, price: 12, idleFee: 2, available: true },
-    { id: 4, name: "Tech Park Station", type: "Tesla", speed: 120, price: 18, idleFee: 8, available: true }
+ const stations = [
+    { id: 1, name: "City Center Hub, Thane", type: "CCS", speed: 50, price: 18, idleFee: 5, available: true, parkingFee: 40 },
+    { id: 2, name: "Highway Fast Charge, NH-8", type: "Tesla", speed: 250, price: 24, idleFee: 10, available: false, parkingFee: 60 },
+    { id: 3, name: "Viviana Mall B2", type: "CCS", speed: 22, price: 12, idleFee: 2, available: true, parkingFee: 50 },
+    { id: 4, name: "Mindspace Tech Park", type: "Tesla", speed: 120, price: 20, idleFee: 8, available: true, parkingFee: 30 },
+    { id: 5, name: "Aerocity Gateway, Delhi", type: "CCS2", speed: 60, price: 22, idleFee: 7, available: true, parkingFee: 80 },
+    { id: 6, name: "Marina Beach Hub, Chennai", type: "Type 2", speed: 22, price: 10, idleFee: 3, available: true, parkingFee: 20 },
+    { id: 7, name: "Whitefield Fast DC, Bengaluru", type: "CCS", speed: 100, price: 21, idleFee: 6, available: false, parkingFee: 40 },
+    { id: 8, name: "Park Street Plaza, Kolkata", type: "Type 2", speed: 22, price: 15, idleFee: 4, available: true, parkingFee: 30 },
+    { id: 9, name: "Planet Hollywood, Thane City", type: "CCS2", speed: 60, price: 20, idleFee: 5, available: true, parkingFee: 50 },
+    { id: 10, name: "EV Dock Charging Station", type: "DC Fast", speed: 30, price: 15, idleFee: 3, available: true, parkingFee: 20 },
+    { id: 11, name: "Kazam Charging Station", type: "Type 2", speed: 22, price: 12, idleFee: 2, available: true, parkingFee: 30 },
+    { id: 12, name: "Fortum Charging Station", type: "CCS", speed: 50, price: 18, idleFee: 5, available: false, parkingFee: 40 },
+    { id: 13, name: "Adani Charging Station", type: "CCS2", speed: 80, price: 22, idleFee: 6, available: true, parkingFee: 50 }
 ];
 function displayStations(filteredStations) {
     const container = document.getElementById('station-list');
@@ -29,7 +37,7 @@ function displayStations(filteredStations) {
                 </div>
 
                 <div class="progress-bar">
-                    <div class="fill" style="width: ${(station.speed/250)*100}%"></div>
+                    <div class="fill" style="width: ${(station.speed / 250) * 100}%"></div>
                 </div>
                 
                 <p style="font-size: 0.8rem; color: #00d1b2; font-weight: bold; margin-top: 10px;">
@@ -39,8 +47,7 @@ function displayStations(filteredStations) {
         `;
     });
 }
-// Requirement: JS Availability Filter
-function filterStations() {
+ function filterStations() {
     const isChecked = document.getElementById('available-only').checked;
     const filtered = isChecked ? stations.filter(s => s.available) : stations;
     displayStations(filtered);
@@ -51,16 +58,14 @@ function viewDetails(id) {
     window.location.href = 'details.html';
 }
 
-// Initial Load
-if(document.getElementById('station-list')) displayStations(stations);
+ if (document.getElementById('station-list')) displayStations(stations);
 
 
 function toggleMenu() {
     const menu = document.getElementById('menu-overlay');
     menu.classList.toggle('active');
-    
-    // Prevent scrolling of the main page when menu is open
-    if (menu.classList.contains('active')) {
+
+     if (menu.classList.contains('active')) {
         document.body.style.overflow = 'hidden';
     } else {
         document.body.style.overflow = 'auto';
@@ -70,9 +75,8 @@ function toggleMenu() {
 function toggleSearch() {
     const searchOverlay = document.getElementById('search-overlay');
     searchOverlay.classList.toggle('active');
-    
-    // Auto-focus the input box when opened
-    if (searchOverlay.classList.contains('active')) {
+
+     if (searchOverlay.classList.contains('active')) {
         setTimeout(() => {
             document.getElementById('search-box').focus();
         }, 400);
@@ -80,15 +84,15 @@ function toggleSearch() {
 }
 
 
-// Add this to your script.js
-document.querySelectorAll('.search-pill').forEach(pill => {
+
+
+ document.querySelectorAll('.search-pill').forEach(pill => {
     pill.addEventListener('click', () => {
         const searchBox = document.getElementById('search-box');
         searchBox.value = pill.innerText; // Puts pill text into search bar
         searchBox.focus();
-        
-        // Optional: Trigger your filter logic automatically
-        console.log("Searching for: " + pill.innerText);
+
+         console.log("Searching for: " + pill.innerText);
     });
 });
 
@@ -96,8 +100,7 @@ document.querySelectorAll('.search-pill').forEach(pill => {
 
 
 
-// Add this at the bottom of your script.js
-function loadStationDetails() {
+ function loadStationDetails() {
     const data = JSON.parse(localStorage.getItem('selectedStation'));
 
     if (data && document.getElementById('st-name')) {
@@ -106,43 +109,55 @@ function loadStationDetails() {
         document.getElementById('st-type').innerText = `${data.type} (Ultra Fast)`;
         document.getElementById('st-speed').innerText = `${data.speed} kW`;
         document.getElementById('st-idle').innerText = data.idleFee;
-        
-        // Dynamic Status Badge
-        const badge = document.getElementById('st-status-badge');
+
+         const badge = document.getElementById('st-status-badge');
         badge.innerText = data.available ? 'Available' : 'Out of Service';
         badge.className = `badge ${data.available ? 'available' : 'in-use'}`;
 
-        // NEW: Pulling Parking Fee from data (adding 50 as default if not in array)
-        document.getElementById('st-parking').innerText = data.parkingFee ? `₹${data.parkingFee}/hr` : "₹50/hr";
+         document.getElementById('st-parking').innerText = data.parkingFee ? `₹${data.parkingFee}/hr` : "₹50/hr";
 
-        // Reserve Button Logic
-        const reserveBtn = document.getElementById('reserve-btn');
-        if (!data.available) {
-            reserveBtn.innerText = "Unavailable";
-            reserveBtn.style.background = "#ccc";
-            reserveBtn.disabled = true;
-        } else {
-            reserveBtn.onclick = () => alert(`Success! Charging spot reserved at ${data.name}.`);
-        }
+         const reserveBtn = document.getElementById('reserve-btn');
+
+        reserveBtn.addEventListener('click', function () {
+             this.innerHTML = 'Processing...';
+            this.style.opacity = '0.7';
+            this.disabled = true;
+
+             setTimeout(() => {
+                 this.innerHTML = 'RESERVED ✓';
+                this.style.background = '#00d1b2'; // Brand Teal
+                this.style.color = '#1a1a1a';      // Dark text for contrast
+                this.style.opacity = '1';
+
+                 showToast("Success! Spot reserved at City Center Hub.");
+            }, 1500);
+        });
     }
 }
 
+function showToast(message) {
+    let toast = document.getElementById("toast");
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "toast";
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = message;
+    toast.className = "show";
+    setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+}
 
-
-// Geolocation Logic for Real Map
-function initRealMap() {
+ function initRealMap() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             let lat = position.coords.latitude;
             let lng = position.coords.longitude;
 
-            // This URL creates a search specifically for Tata Power chargers near your lat/lng
-            const mapUrl = `https://www.google.com/maps?q=Tata+Power+EV+Charging+Station&ll=${lat},${lng}&z=14&output=embed`;
-            
+             const mapUrl = `https://www.google.com/maps?q=Tata+Power+EV+Charging+Station&ll=${lat},${lng}&z=14&output=embed`;
+
             document.getElementById("mapFrame").src = mapUrl;
         }, function () {
-            // Fallback if user denies location
-            document.getElementById("mapFrame").src = 
+             document.getElementById("mapFrame").src =
                 "https://www.google.com/maps?q=Tata+Power+EV+Charging+Stations+India&output=embed";
         });
     }
@@ -158,7 +173,16 @@ window.addEventListener('load', () => {
 });
 
 
+function reserveCharger() {
+    const btn = document.querySelector('.reserve-btn');
+    btn.innerHTML = "RESERVING...";
 
+    setTimeout(() => {
+        btn.style.backgroundColor = "#00d1b2";
+        btn.innerHTML = "RESERVED ✓";
+        btn.disabled = true; // Prevent double booking
+    }, 1000);
+}
 
 // 1. Data for the Charger Solutions
 const chargerData = {
@@ -189,18 +213,17 @@ const chargerData = {
     }
 
 
-    // Add data for 'e-bus' and 'fleet' here similarly
-};
+ };
 
 // 2. Function to open Modal
 function openChargerInfo(key) {
     const data = chargerData[key];
-    if(!data) return;
+    if (!data) return;
 
     document.getElementById('modal-title').innerText = data.title;
     document.getElementById('modal-desc').innerText = data.desc;
     document.getElementById('modal-img').src = data.img;
-    
+
     const specsList = document.getElementById('modal-specs');
     specsList.innerHTML = data.specs.map(s => `<li>${s}</li>`).join('');
 
@@ -214,7 +237,7 @@ function closeModal() {
 
 
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const header = document.getElementById('main-header');
     if (window.scrollY > 50) {
         header.classList.add('scrolled');
@@ -222,3 +245,67 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled');
     }
 });
+
+let currentPosition = 0;
+
+function moveSlider(direction) {
+    const track = document.getElementById('sliderTrack');
+    const cards = document.querySelectorAll('.info-card');
+
+     const cardWidth = cards[0].offsetWidth + 30;
+    const totalCards = cards.length;
+
+     if (!window.sliderIndex) window.sliderIndex = 0;
+
+    window.sliderIndex += direction;
+
+  
+    if (window.sliderIndex > totalCards - 3) {
+        window.sliderIndex = 0;
+    }
+     else if (window.sliderIndex < 0) {
+        window.sliderIndex = totalCards - 3;
+    }
+
+    const moveDistance = -(window.sliderIndex * cardWidth);
+    track.style.transform = `translateX(${moveDistance}px)`;
+}
+
+let currentIndex = 0;
+const track = document.getElementById('goTrack');
+const cards = document.querySelectorAll('.go-card');
+const totalCards = cards.length;
+
+function moveGoSlider(direction) {
+    currentIndex += direction;
+
+    // The Infinite Logic
+    if (currentIndex >= totalCards) {
+        currentIndex = 0;
+    } else if (currentIndex < 0) {
+        currentIndex = totalCards - 1;
+    }
+
+    updateSlider();
+}
+
+function updateSlider() {
+    const card = cards[0];
+    const cardWidth = card.offsetWidth;
+    const gap = 40; 
+
+    // Calculate movement
+    const moveDistance = (cardWidth + gap) * currentIndex;
+    track.style.transform = `translateX(-${moveDistance}px)`;
+
+    // Update active state for opacity/scale
+    cards.forEach((c, index) => {
+        if (index === currentIndex) {
+            c.classList.add('active');
+        } else {
+            c.classList.remove('active');
+        }
+    });
+}
+
+setInterval(() => moveGoSlider(1), 5000);
